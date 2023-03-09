@@ -9,13 +9,13 @@ class View extends StatefulWidget {
 }
 
 class _ViewState extends State<View> {
+  int i=1;
   @override
   Widget build(BuildContext context) {
-    ProductModal p1 =
-        ModalRoute.of(context)!.settings.arguments as ProductModal;
+    ProductModal p1 = ModalRoute.of(context)!.settings.arguments as ProductModal;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
           title: Text(
             "View",
             style: TextStyle(fontSize: 30, color: Colors.white),
@@ -28,11 +28,11 @@ class _ViewState extends State<View> {
               height: 220,
               width: double.infinity,
               alignment: Alignment.center,
-              color: Colors.grey,
+              color: Colors.white,
               child: Container(
-                height: 200,
-                width: 200,
-                color: Colors.grey,
+                height: double.infinity,
+                width: 150,
+                color: Colors.white,
                 child: Image.asset("${p1.f}",fit: BoxFit.fill,),
               ),
             ),
@@ -45,7 +45,7 @@ class _ViewState extends State<View> {
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(30),
                   ),
-                  color: Colors.white,
+                  color: Colors.grey[200],
                 ),
                 child: Column(
                   children: [
@@ -72,44 +72,58 @@ class _ViewState extends State<View> {
                     Container(
                       height: 100,
                       width: double.infinity,
-                      color: Colors.white,
+                      alignment: Alignment.center,
+                      color: Colors.grey[200],
                       child: Text("${p1.d}",style: TextStyle(
-                        fontSize: 20
+                          fontSize: 25
                       ),),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     Container(height: 100,
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Quantity",style: TextStyle(
-                          fontSize: 20,
-                        ),),
-                        SizedBox(
-                          height: 10
-                        ),
-                        Container(
-                          height: 50,
-                          width: 200,
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(30),
-                           color: Colors.white,
-                         ),
-                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              FloatingActionButton(onPressed: (){},child: Text("-",style: TextStyle(
-                                color: Colors.blue
-                              ),),backgroundColor: Colors.white,),
-                              Text("1",style: TextStyle(fontSize: 30),),
-                              FloatingActionButton(onPressed: (){},child: Text("+"),backgroundColor: Colors.blue,),
-                            ],
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Quantity",style: TextStyle(
+                            fontSize: 20,
+                          ),),
+                          SizedBox(
+                              height: 10
                           ),
-                        )
-                      ],
-                    ),
+                          Container(
+                            height: 50,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Colors.white30,
+                            ),
+                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                FloatingActionButton(onPressed: (){
+                                  setState(() {
+                                    if(i>1)
+                                      {
+                                        i--;
+                                      }
+                                  });
+                                },child: Text("-",style: TextStyle(
+                                    color: Colors.blue,fontSize: 40
+                                ),),backgroundColor: Colors.white,),
+                                Text("$i",style: TextStyle(fontSize: 30),),
+                                FloatingActionButton(onPressed: (){
+                                  setState(() {
+                                    i++;
+                                  });
+                                },child: Text("+",style: TextStyle(
+                                  fontSize: 30
+                                ),),backgroundColor: Colors.blue,),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Container(
                       height: 100,
@@ -126,7 +140,7 @@ class _ViewState extends State<View> {
                               color: Colors.grey,
                             ),
                             child: Text("${p1.pr}",style: TextStyle(
-                              fontSize: 30
+                                fontSize: 30
                             ),),
                           ),
                           FloatingActionButton.extended(
@@ -146,6 +160,7 @@ class _ViewState extends State<View> {
             )
           ],
         ),
+        backgroundColor: Colors.white,
       ),
     );
   }
